@@ -257,6 +257,7 @@ while getopts ":a:e:E:C:T:r:s:du:bcp:n:k:DNm:f:tz2" opt; do
             ;;
         6)
             OVPN_IPV6=1
+            ;;
         \?)
             set +x
             echo "Invalid option: -$OPTARG" >&2
