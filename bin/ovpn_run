@@ -85,8 +85,7 @@ if [ -r "$OPENVPN/crl.pem" ]; then
     addArg "--crl-verify" "$OPENVPN/crl.pem"
 fi
 
-ip -6 route show default 2>/dev/null
-if [ $? = 0 ]; then
+if [ $IPV6 = 1 ]; then
     echo "Enabling IPv6 Forwarding"
     # If this fails, ensure the docker container is run with --privileged
     # Could be side stepped with `ip netns` madness to drop privileged flag

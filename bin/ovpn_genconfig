@@ -104,6 +104,7 @@ usage() {
     echo " -t    Use TAP device (instead of TUN device)"
     echo " -T    Encrypt packets with the given cipher algorithm instead of the default one (tls-cipher)."
     echo " -z    Enable comp-lzo compression."
+    echo " -6    Enable ipv6 support."
 }
 
 process_route_config() {
@@ -167,6 +168,7 @@ OVPN_ROUTES=()
 OVPN_SERVER=192.168.255.0/24
 OVPN_SERVER_URL=''
 OVPN_TLS_CIPHER=''
+OVPN_IPV6=0
 
 # Import existing configuration if present
 [ -r "$OVPN_ENV" ] && source "$OVPN_ENV"
@@ -253,6 +255,8 @@ while getopts ":a:e:E:C:T:r:s:du:bcp:n:k:DNm:f:tz2" opt; do
         f)
             OVPN_FRAGMENT="$OPTARG"
             ;;
+        6)
+            OVPN_IPV6=1
         \?)
             set +x
             echo "Invalid option: -$OPTARG" >&2
